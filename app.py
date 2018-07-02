@@ -54,12 +54,13 @@ def verify_fb_token(token_sent):
 
 #chooses a random message to send to the user
 def get_message():
+    global keyword
     sample_responses = {
         "hours": "Our hours are M-T: 11-10, Fr-Sat: 11-11, Sun: 12-9"
         "menu": "Click this link to check out our menu: https://static.tumblr.com/2e9nahe/TZMpanpjt/untitled-1.png"
     }
     # return selected item to the user
-    return keyword
+    return sample_responses[keyword]
 
 #uses PyMessenger to send response to user
 def send_message(recipient_id, response):
