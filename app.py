@@ -8,6 +8,8 @@ ACCESS_TOKEN = os.environ['ACCESS_TOKEN']   #ACCESS_TOKEN = os.environ['ACCESS_T
 VERIFY_TOKEN = os.environ['VERIFY_TOKEN']   #VERIFY_TOKEN = os.environ['VERIFY_TOKEN']
 bot = Bot (ACCESS_TOKEN)
 
+keyword = ["hours", "menu"]
+
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
@@ -26,7 +28,7 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
-                if "hours" in message['message'].get('text'):
+                if keyword[0] in message['message'].get('text') or keyword[1] in message['message'].get('text'):
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
                 #if user sends us a GIF, photo,video, or any other non-text item
@@ -46,9 +48,12 @@ def verify_fb_token(token_sent):
 
 #chooses a random message to send to the user
 def get_message():
-    sample_responses = ["Our hours are M-Th: 11-10, F-Sat: 11-11, Sun: 12-9"]
+    sample_responses = {
+        "hours": "Our hours are M-T: 11-10, Fr-Sat: 11-11, Sun: 12-9"
+        "menu": "Click this link to check out our menu: https://static.tumblr.com/2e9nahe/TZMpanpjt/untitled-1.png"
+    }
     # return selected item to the user
-    return random.choice(sample_responses)
+    return sample_responses[keyword]
 
 #uses PyMessenger to send response to user
 def send_message(recipient_id, response):
