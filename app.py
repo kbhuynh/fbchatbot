@@ -29,11 +29,11 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
-                if keyword[0] in message['message'].get('text'):
+                if "hour" in message['message'].get('text'):
                     keyword = "hours"
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
-                elif keyword[1] in message['message'].get('text'):
+                elif "menu" in message['message'].get('text'):
                     keyword = "menu"
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
