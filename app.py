@@ -38,6 +38,10 @@ def receive_message():
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
                 #if user sends us a GIF, photo,video, or any other non-text item
+                else:
+                    keyword = "else"
+                    response_sent_text = get_message()
+                    send_message(recipient_id, response_sent_text)
                 if message['message'].get('attachments'):
                     response_sent_nontext = get_message()
                     send_message(recipient_id, response_sent_nontext)
@@ -57,7 +61,8 @@ def get_message():
     global keyword
     sample_responses = {
         "hours": "Our hours are M-T: 11-10, Fr-Sat: 11-11, Sun: 12-9",
-        "menu": "Click this link to check out our menu: https://static.tumblr.com/2e9nahe/TZMpanpjt/untitled-1.png"
+        "menu": "Click this link to check out our menu: https://static.tumblr.com/2e9nahe/TZMpanpjt/untitled-1.png",
+        "else": "Thanks for your message! We'll get back to you soon."
     }
     # return selected item to the user
     return sample_responses[keyword]
