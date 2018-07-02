@@ -13,6 +13,7 @@ keyword = ["hours", "menu"]
 #We will receive messages that Facebook sends our bot at this endpoint 
 @app.route("/", methods=['GET', 'POST'])
 def receive_message():
+    global keyword
     if request.method == 'GET':
         """Before allowing people to message your bot, Facebook has implemented a verify token
         that confirms all requests that your bot receives came from Facebook.""" 
@@ -28,7 +29,12 @@ def receive_message():
             if message.get('message'):
                 #Facebook Messenger ID for user so we know where to send response back to
                 recipient_id = message['sender']['id']
-                if keyword[0] in message['message'].get('text') or keyword[1] in message['message'].get('text'):
+                if keyword[0] in message['message'].get('text'):
+                    keyword = keyword[0]
+                    response_sent_text = get_message()
+                    send_message(recipient_id, response_sent_text)
+                if keyword[1] in message['message'].get('text'):
+                    keyword = keyword[1]
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
                 #if user sends us a GIF, photo,video, or any other non-text item
