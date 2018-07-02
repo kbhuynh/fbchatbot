@@ -33,7 +33,7 @@ def receive_message():
                     keyword = "hours"
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
-                if keyword[1] in message['message'].get('text'):
+                elif keyword[1] in message['message'].get('text'):
                     keyword = "menu"
                     response_sent_text = get_message()
                     send_message(recipient_id, response_sent_text)
