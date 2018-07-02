@@ -59,7 +59,7 @@ def get_message():
         "menu": "Click this link to check out our menu: https://static.tumblr.com/2e9nahe/TZMpanpjt/untitled-1.png"
     }
     # return selected item to the user
-    return sample_responses[keyword]
+    return keyword
 
 #uses PyMessenger to send response to user
 def send_message(recipient_id, response):
