@@ -46,8 +46,7 @@ def verify_fb_token(token_sent):
 
 #chooses a random message to send to the user
 def get_message():
-    if "hours" in message['message'].get('text'):
-        sample_responses = "Our hours are M-Th: 11-10, F-Sat: 11-11, Sun: 12-9"
+    sample_responses = "Our hours are M-Th: 11-10, F-Sat: 11-11, Sun: 12-9"
     # return selected item to the user
     return sample_responses
 
